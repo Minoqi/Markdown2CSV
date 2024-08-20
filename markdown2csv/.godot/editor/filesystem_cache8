@@ -1,0 +1,14 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1724115515
+icon.svg::CompressedTexture2D::6315371720784288489::1724105162::1724105167::1::::<><>::
+::res://prefabs/::1724115586
+column.tscn::PackedScene::705161035745231855::1724115586::0::1::::<><>::res://scripts/ColumnData.gd
+::res://scenes/::1724115586
+program.tscn::PackedScene::5613976671071601297::1724115586::0::1::::<><>::uid://kbt5trp8et7t::::res://prefabs/column.tscn<>res://scripts/Program.gd
+::res://scripts/::1724115262
+ColumnData.gd::GDScript::-1::1724105916::0::1::::ColumnData<>HBoxContainer<>::
+Program.gd::GDScript::-1::1724115262::0::1::::Program<>CanvasLayer<>::
+::res://tests/::1724112960
+::res://tests/exports/::1724115605
+TESTONE.csv::Translation::7902787799796396945::1724115605::1724115608::0::::<><>::
+::res://tests/imports/::1724115566
