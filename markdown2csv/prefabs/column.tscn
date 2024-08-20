@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://kbt5trp8et7t"]
+
+[ext_resource type="Script" path="res://scripts/ColumnData.gd" id="1_m06rr"]
+
+[node name="Column" type="HBoxContainer" node_paths=PackedStringArray("columnData", "removeColButton")]
+alignment = 1
+script = ExtResource("1_m06rr")
+columnData = NodePath("ColumnName")
+removeColButton = NodePath("RemoveColumn")
+
+[node name="ColumnName" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+editable = false
+
+[node name="RemoveColumn" type="Button" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = " X "
