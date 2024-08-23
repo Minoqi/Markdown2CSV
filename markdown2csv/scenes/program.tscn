@@ -3,11 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://kbt5trp8et7t" path="res://prefabs/column.tscn" id="1_4sdk5"]
 [ext_resource type="Script" path="res://scripts/Program.gd" id="1_li3nl"]
 
-[node name="Program" type="CanvasLayer" node_paths=PackedStringArray("selectFileDialog", "selectFileInput", "selectFileButton", "columnInput", "addColumnButton", "columnContainer", "convertButton", "saveFileDialog")]
+[node name="Program" type="CanvasLayer" node_paths=PackedStringArray("selectFileDialog", "selectFileInput", "selectFileButton", "exportFilePathInput", "exportFilePathButton", "columnInput", "addColumnButton", "columnContainer", "convertButton", "saveFileDialog")]
 script = ExtResource("1_li3nl")
 selectFileDialog = NodePath("SelectFileDialog")
 selectFileInput = NodePath("MarginContainer/VBoxContainer/FileContainer/FilePath")
 selectFileButton = NodePath("MarginContainer/VBoxContainer/FileContainer/OpenFile")
+exportFilePathInput = NodePath("MarginContainer/VBoxContainer/ExportFilePathContained/ExportFilePathLineEdit")
+exportFilePathButton = NodePath("MarginContainer/VBoxContainer/ExportFilePathContained/ExportFilePath")
 columnInput = NodePath("MarginContainer/VBoxContainer/ColumnAdderContainer/ColumnInput")
 addColumnButton = NodePath("MarginContainer/VBoxContainer/ColumnAdderContainer/AddColumn")
 columnContainer = NodePath("MarginContainer/VBoxContainer/ColumnsContainer")
@@ -53,6 +55,31 @@ editable = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = " + "
+
+[node name="ExportFilePathContained" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ExportFilePathLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/ExportFilePathContained"]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+placeholder_text = "Select A File"
+editable = false
+
+[node name="ExportFilePath" type="Button" parent="MarginContainer/VBoxContainer/ExportFilePathContained"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = " + "
+
+[node name="SaveFileName" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(550, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 25
+placeholder_text = "File Name"
 
 [node name="ColumnAdderContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

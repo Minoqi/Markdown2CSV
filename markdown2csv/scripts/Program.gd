@@ -5,6 +5,9 @@ class_name Program
 @export var selectFileDialog : FileDialog
 @export var selectFileInput : LineEdit
 @export var selectFileButton : Button
+@export var exportFilePathInput : LineEdit
+@export var exportFilePathButton : Button
+@export var exportFileName : LineEdit
 @export var columnInput : LineEdit
 @export var addColumnButton : Button
 @export var columnContainer : VBoxContainer
@@ -16,6 +19,7 @@ class_name Program
 var columns : Array[String] = []
 var filePaths : PackedStringArray
 var csvFileInput : String = ""
+var saveFilePath : String = ""
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,7 +28,8 @@ func _ready():
 	selectFileButton.pressed.connect(_open_select_file)
 	addColumnButton.pressed.connect(_add_column)
 	convertButton.pressed.connect(_convert_pressed)
-	saveFileDialog.file_selected.connect(_export_csv_file)
+	saveFileDialog.file_selected.connect(_save_export_path)
+	exportFilePathButton.pressed.connect(_select_export_file_path)
 
 
 #region Open Files
@@ -59,13 +64,6 @@ func _remove_column(_column : String) -> void:
 
 func _convert_to_csv() -> String:
 	var csvData : String = ""
-	#
-	### Store the columns
-	#for column in columns:
-		#csvData += column + "|"
-	#
-	### Remove the last delimitter (not needed)
-	#csvData = csvData.left(csvData.length() - 1)
 	
 	## Convert each file into a CSV file
 	for filePath in filePaths:
@@ -92,16 +90,29 @@ func _convert_to_csv() -> String:
 		
 		## Remove final delimitters
 		csvData = csvData.left(csvData.length() - 1)
+		
+		markdownFile.close()
 	
+	print("CSV FILE: ", csvData)
 	return csvData
 
 
 #region Export Files
 func _convert_pressed() -> void:
-	saveFileDialog.popup()
+	_export_to_csv()
 
 
-func _export_csv_file(_savePath : String) -> void:
-	var csvFile = FileAccess.open(_savePath, FileAccess.WRITE)
+func _export_to_csv() -> void:
+	var csvFile = FileAccess.open(saveFilePath, FileAccess.WRITE)
 	csvFile.store_string(_convert_to_csv())
+	csvFile.close()
+
+
+func _save_export_path(_savePath : String) -> void:
+	saveFilePath = _savePath
+	exportFilePathInput.text = saveFilePath
+
+
+func _select_export_file_path() -> void:
+	saveFileDialog.popup()
 #endregion
